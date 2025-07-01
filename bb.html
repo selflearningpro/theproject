@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Custom Payment Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://secure.networkmerchants.com/token/styles.css" rel="stylesheet" />
+  <script src="https://secure.networkmerchants.com/token/Collect.js"
+    data-tokenization-key="jg9kHp-gA35x4-XS5s4z-34ySFK"
+    data-variant="inline"
+    data-field-ccnumber-placeholder="0000 0000 0000 0000"
+    data-field-ccexp-placeholder="10 / 23"
+    data-field-cvv-placeholder="123"
+    data-payment-selector="#payButton"
+    data-custom-css='{
+      "border-style": "solid",
+      "border-color": "#c7c7c7",
+      "border-width": "1px",
+      "border-radius": "3px",
+      "padding": "6px",
+      "font-size": "16px",
+      "height": "33px"
+    }'>
+  </script>
+</head>
+<body>
+  <div class="container mt-4">
+    <h2>Your Custom Payment Page</h2>
+    <form action="https://payments.vapetasia.com/process-payment.php" method="POST" id="paymentForm">
+      <!-- Hidden required fields -->
+      <input type="hidden" name="invoiceId" value="2245749000196696667" />
+      <input type="hidden" name="secretKey" value="1zoslxiseW3lpz3soe3lsdf032ldsFAf3" />
+      <input type="hidden" name="mode" value="production" />
+      <input type="hidden" name="customer_id" value="2245749000000189097" />
+      <input type="hidden" name="payment_method" value="new" />
+      <input type="hidden" name="has_vault" value="false" />
+
+      <!-- Amount -->
+      <div class="form-group">
+        <label for="amount">Amount to Pay (USD)</label>
+        <input type="number" class="form-control" id="amount" name="amount" max="3900" min="1" value="3900" required />
+      </div>
+
+      <!-- Card Number -->
+      <div class="form-group" id="ccnumber">
+        <label for="cardNumber">Card Number</label>
+        <!-- Collect.js will replace this iframe -->
+        <iframe id="CollectJSInlineccnumber" class="CollectJSInlineIframe" width="100%" scrolling="no" height="33px"></iframe>
+      </div>
+
+      <!-- Expiration Date -->
+      <div class="form-group" id="ccexp">
+        <label for="expiryDate">Expiration Date</label>
+        <iframe id="CollectJSInlineccexp" class="CollectJSInlineIframe" width="100%" scrolling="no" height="33px"></iframe>
+      </div>
+
+      <!-- CVV -->
+      <div class="form-group" id="cvv">
+        <label for="cvvNumber">CVV</label>
+        <iframe id="CollectJSInlinecvv" class="CollectJSInlineIframe" width="100%" scrolling="no" height="33px"></iframe>
+      </div>
+
+      <!-- Save card checkbox -->
+      <div class="form-group form-check">
+        <input type="checkbox" class="form-check-input" id="saveCard" name="saveCard" />
+        <label class="form-check-label" for="saveCard">Save card for future use?</label>
+      </div>
+
+      <h4>Billing Details</h4>
+
+      <div class="form-group">
+        <label for="fname">First Name</label>
+        <input type="text" class="form-control" id="fname" name="fname" required />
+      </div>
+
+      <div class="form-group">
+        <label for="lname">Last Name</label>
+        <input type="text" class="form-control" id="lname" name="lname" required />
+      </div>
+
+      <div class="form-group">
+        <label for="cname">Company Name</label>
+        <input type="text" class="form-control" id="cname" name="cname" value="Medusa Distribution" />
+      </div>
+
+      <div class="form-group">
+        <label for="country">Country / Region</label>
+        <input type="text" class="form-control" id="country" name="country" value="United States" required />
+      </div>
+
+      <div class="form-group">
+        <label for="streetAddress">Street Address</label>
+        <input type="text" class="form-control" id="streetAddress" name="streetAddress" />
+      </div>
+
+      <div class="form-group">
+        <label for="streetAddress2">Apt / Suite</label>
+        <input type="text" class="form-control" id="streetAddress2" name="streetAddress2" value="Suite D" />
+      </div>
+
+      <div class="form-group">
+        <label for="city">City</label>
+        <input type="text" class="form-control" id="city" name="city" value="Roseland" />
+      </div>
+
+      <div class="form-group">
+        <label for="zip">Zip</label>
+        <input type="text" class="form-control" id="zip" name="zip" />
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" name="email" required />
+      </div>
+
+      <button type="submit" class="btn btn-primary" id="payButton">Submit Payment</button>
+    </form>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
